@@ -16,11 +16,11 @@ import org.junit.jupiter.api.DisplayName;
  *
  * @author radri
  */
-public class RadicacionTest {
+public class RestaTest {
     
     Calculadora calc;
     
-    public RadicacionTest() {
+    public RestaTest() {
     }
     
     @BeforeAll
@@ -44,20 +44,27 @@ public class RadicacionTest {
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
-    @DisplayName("Raiz cuadrada de un numero positivo")
-    public void raizCuadradaPositiva() {
-        assertEquals(4,calc.radicacion(16,2));
+    @DisplayName("Resta Basica")
+    public void restaBasica(){
+        assertAll("Pruebas Resta Basica",
+            () -> assertDoesNotThrow(()->{
+                calc.resta(0,0);
+                }),
+            () -> assertFalse(calc.resta(0,0)!=0),
+            () -> assertEquals(0,calc.resta(0,0))
+        );
     }
     
     @Test
-    @DisplayName("Raiz cuadrada de un numero negativo")
-    public void raizCuadradaNegativa() {
-        assertEquals(0,calc.radicacion(-2,2));
+    @DisplayName("Resta de numeros Negativos")
+    public void restaNegativos(){
+        assertTrue(calc.resta(-4,-2)==-2);
     }
     
     @Test
-    @DisplayName("Raiz enesima de un numero")
-    public void raizEnesima() {
-        assertEquals(2,calc.radicacion(16,4));
+    @DisplayName("Resta de numeros positivos")
+    public void restaPostivos(){
+        assertEquals(5,calc.resta(8,3));
     }
+    
 }

@@ -16,11 +16,11 @@ import org.junit.jupiter.api.DisplayName;
  *
  * @author radri
  */
-public class RadicacionTest {
+public class ExponenciacionTest {
     
     Calculadora calc;
     
-    public RadicacionTest() {
+    public ExponenciacionTest() {
     }
     
     @BeforeAll
@@ -44,20 +44,29 @@ public class RadicacionTest {
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
-    @DisplayName("Raiz cuadrada de un numero positivo")
-    public void raizCuadradaPositiva() {
-        assertEquals(4,calc.radicacion(16,2));
+    @DisplayName("Potencia Positiva")
+    public void potenciaPositiva(){
+        assertTrue(calc.exponenciacion(2,2)==4);
     }
     
     @Test
-    @DisplayName("Raiz cuadrada de un numero negativo")
-    public void raizCuadradaNegativa() {
-        assertEquals(0,calc.radicacion(-2,2));
+    @DisplayName("Potencia con base negativa y exponente Par")
+    public void baseNegativaExpoPar(){
+        assertTrue(calc.exponenciacion(-2,2)==4);
     }
     
     @Test
-    @DisplayName("Raiz enesima de un numero")
-    public void raizEnesima() {
-        assertEquals(2,calc.radicacion(16,4));
+    @DisplayName("Potencia con base negativa y exponente Impar")
+    public void baseNegativaExpoImpar(){
+        assertTrue(calc.exponenciacion(-2,3)==-8);
+    }
+    
+    @Test
+    @DisplayName("Potencia de cero")
+    public void potenciaCero(){
+        assertAll("Agrupadas",
+            () -> assertTrue(calc.exponenciacion(0,0)==1),
+            () -> assertNotNull(calc.exponenciacion(0,0))
+        );
     }
 }
