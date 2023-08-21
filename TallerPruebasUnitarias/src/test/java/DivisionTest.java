@@ -16,11 +16,9 @@ import org.junit.jupiter.api.DisplayName;
  *
  * @author radri
  */
-public class RadicacionTest {
+public class DivisionTest {
     
-    Calculadora calc;
-    
-    public RadicacionTest() {
+    public DivisionTest() {
     }
     
     @BeforeAll
@@ -33,7 +31,6 @@ public class RadicacionTest {
     
     @BeforeEach
     public void setUp() {
-        calc = new Calculadora();
     }
     
     @AfterEach
@@ -43,21 +40,29 @@ public class RadicacionTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
+    // @Test
+    // public void hello() {}
+    
     @Test
-    @DisplayName("Raiz cuadrada de un numero positivo")
-    public void raizCuadradaPositiva() {
-        assertEquals(4,calc.radicacion(16,2));
+    @DisplayName("division de un numero con 0")
+    public void divicionCero(){
+        Calculadora calculadora = new Calculadora();
+        assertThrows(Exception.class,()->{calculadora.division(0, 0);});
+        
+    }
+    @Test
+    @DisplayName("division de un numero positivo con uno negativo")
+    public void divicionNegativo(){
+        Calculadora calculadora = new Calculadora();
+        assertNotEquals(1, calculadora.division(8, -2));
+        
     }
     
     @Test
-    @DisplayName("Raiz cuadrada de un numero negativo")
-    public void raizCuadradaNegativa() {
-        assertEquals(0,calc.radicacion(-2,2));
-    }
+    @DisplayName("division simple")
+    public void divicionSimple(){
+        Calculadora calculadora = new Calculadora();
+        assertEquals(1, calculadora.division(2, 2));
     
-    @Test
-    @DisplayName("Raiz enesima de un numero")
-    public void raizEnesima() {
-        assertEquals(2,calc.radicacion(16,4));
     }
 }
